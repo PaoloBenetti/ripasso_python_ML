@@ -22,6 +22,36 @@ def test_frozen(): # verifica immutabilita
     with pytest.raises(dataclasses.FrozenInstanceError):
         v1.x = 89
 
+def test_add_onlyvec():
+    v1 = Vector2D(1,2)
+    with pytest.raises(TypeError):
+        x = v1 + 6
+
+def test_mul_onlyvec():
+    v1 = Vector2D(1,2)
+    with pytest.raises(TypeError):
+        x = v1 * 'ciao'
+
+def test_vec_add():
+    v1 , v2 = Vector2D(1,2), Vector2D(1,2)
+    v3 = Vector2D(3,3)
+    assert (v3 == (v1 + v2))
+
+def test_vec_mult():
+    v1, s = Vector2D(1, 2), 3
+    res = Vector2D(3, 6)
+    assert (res == (v1 * s))
+
+def test_vec_neg():
+    v1 = Vector2D(1,2)
+    vr = Vector2D(-1, -2)
+    assert vr == -v1
+
+def test_add_sum():
+    lista = [Vector2D(1,2), Vector2D(1,2), Vector2D(1,3)]
+    res = sum(lista)
+    assert res == Vector2D(3,7)
+
 def test_poly_exist():
     ingresso = [Vector2D(1,1), Vector2D(12,2)]
     pippo = Polyline(ingresso)
