@@ -34,7 +34,7 @@ def test_mul_onlyvec():
 
 def test_vec_add():
     v1 , v2 = Vector2D(1,2), Vector2D(1,2)
-    v3 = Vector2D(3,3)
+    v3 = Vector2D(2,4)
     assert (v3 == (v1 + v2))
 
 def test_vec_mult():
