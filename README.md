@@ -16,4 +16,9 @@ Scoperte:
 - In fase di ottimizzazione gli assert vengono ignorati dall'interprete, nel codice meglio usare raise
 - Esistono gli oggetti Slice, e getitem li gestisce.
 
+Giorno 3: 11/07  
+Aggiungi a Vector2D: somma tra vettori, moltiplicazione per scalare (sia v * 2 che 2 * v), negazione. Testa anche il caso di tipo incompatibile (v + "ciao" deve sollevare TypeError, non un errore criptico)  
 
+Scoperte:  
+- la funzione sum() parte sempre da 0 e serve implementare __radd__ in modo da gestire questo caso
+- ogni operatore con un problema di tipo (Typeerror) va ad invocare al versione con __roperando__
