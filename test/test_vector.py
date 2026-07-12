@@ -88,3 +88,24 @@ def test_poly_index_out_of_range():
     pippo = Polyline([Vector2D(4, 1)])
     with pytest.raises(IndexError):
         pippo[5]
+
+def test_poly_in():
+    ingresso = [Vector2D(1, 1), Vector2D(2, 2), Vector2D(3, 3)]
+    pippo = Polyline(ingresso)
+    assert Vector2D(1, 1) in pippo
+    assert Vector2D(0, 1) not in pippo
+
+def test_poly_index():
+    ingresso = [Vector2D(1, 1), Vector2D(2, 2), Vector2D(3, 3)]
+    pippo = Polyline(ingresso)
+    assert pippo.index(Vector2D(3, 3)) == 2
+
+def test_poly_count():
+    ingresso = [Vector2D(1, 1), Vector2D(1, 1), Vector2D(3, 3)]
+    pippo = Polyline(ingresso)
+    assert pippo.count(Vector2D(1, 1)) == 2
+
+def test_poly_reversed():
+    ingresso = [Vector2D(1, 1), Vector2D(2, 2), Vector2D(3, 3)]
+    pippo = Polyline(ingresso)
+    assert list(reversed(pippo)) == [Vector2D(3, 3), Vector2D(2, 2), Vector2D(1, 1)]
