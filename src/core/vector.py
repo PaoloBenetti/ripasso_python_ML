@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from collections.abc import Sequence
 
 
 @dataclass(frozen=True)
@@ -52,7 +53,7 @@ class Vector2D:
         return f'Vettore di coordinate ( {self.x}, {self.y})'
 
 @dataclass
-class Polyline:
+class Polyline(Sequence):
     linea: list[Vector2D]
 
     def __len__(self):
@@ -67,8 +68,9 @@ class Polyline:
     def __setitem__(self, key, value):
         if not isinstance(value, Vector2D): # in fase ottimizzazione gli assert spariscono
             raise TypeError(f"Expected Vector2D, got {type(value).__name__}")
-        if isinstance(key, slice):
-            cls = type(self)
-            return cls(self.linea[key])
-        else:
-            self.linea[key] = value
+        self.linea[key] = value
+
+
+
+
+
