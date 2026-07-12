@@ -22,3 +22,12 @@ Aggiungi a Vector2D: somma tra vettori, moltiplicazione per scalare (sia v * 2 c
 Scoperte:  
 - la funzione sum() parte sempre da 0 e serve implementare __radd__ in modo da gestire questo caso
 - ogni operatore con un problema di tipo (Typeerror) va ad invocare al versione con __roperando__
+
+Giorno 4: 12/07
+Fai ereditare Polyline da collections.abc.Sequence (implementando solo __getitem__ e __len__ ottieni gratis __contains__, __iter__, index, count) — capisci cosa ti dà "gratis" l'ABC    
+
+Scoperte:
+- in fa riferimento ai metodi ereditati __contains__
+- Duck typing: in teoria non si fa riferimento al tipo in maniera vincolante ma si lascia che sia il programmatore o la libreria a gestirlo.
+
+  
