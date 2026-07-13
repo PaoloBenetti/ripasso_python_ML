@@ -35,5 +35,6 @@ Rileggi il codice scritto nei 4 giorni, aggiungi type hints (from __future__ imp
 
 Scoperte:
 - annotazioni in cui un metodo di una classe ritorna la stessa classe richiede che all'inizio ci sia form __ future __ import annotations
+- Per contratto se due oggetti sono uguali, i loro hash devono essere uguali. Se implemento una funzione __ eq __ allora devo riallineare __ hash __ per forza, sicoome in precedenza il metodo è basato su id 
 
   
