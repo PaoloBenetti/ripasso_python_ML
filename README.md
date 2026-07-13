@@ -37,4 +37,10 @@ Scoperte:
 - annotazioni in cui un metodo di una classe ritorna la stessa classe richiede che all'inizio ci sia form __ future __ import annotations
 - Per contratto se due oggetti sono uguali, i loro hash devono essere uguali. Se implemento una funzione __ eq __ allora devo riallineare __ hash __ per forza, sicoome in precedenza il metodo è basato su id 
 
-  
+__Settimana 2__   
+Giorno 1: 13/07  
+Scrivi un iteratore custom FibonacciIterator (classe con __next__) che genera Fibonacci senza limite superiore, poi confrontalo con la versione "sbagliata" che rimaterializza tutto in una lista  
+
+Scoperte:  
+- Un iterabile è un oggetto che costruisce un iteratore con la chiamata __ iter __ , un iteratore è una classe che implementa next e gestisce il flusso di accesso
+- StopIteration è l'eccezione da sollevare per mettere fine all'iteratore, altrimenti si avrà un accesso infinito
