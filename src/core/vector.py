@@ -72,6 +72,19 @@ class Polyline(Sequence):
             raise TypeError(f"Expected Vector2D, got {type(value).__name__}")
         self.linea[key] = value
 
+class FibonacciIterator:
+    def __init__(self):
+        self.f1 = 0
+        self.f2 = 1
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        res = self.f1
+        self.f1, self.f2 = self.f2, self.f1 + self.f2
+        return res
+
 
 
 
