@@ -30,4 +30,10 @@ Scoperte:
 - in fa riferimento ai metodi ereditati __contains__
 - Duck typing: in teoria non si fa riferimento al tipo in maniera vincolante ma si lascia che sia il programmatore o la libreria a gestirlo.
 
+Giorno 5: 13/07
+Rileggi il codice scritto nei 4 giorni, aggiungi type hints (from __future__ import annotations + annotazioni base), verifica che tutti i test passino, fai un piccolo refactor se qualcosa è ripetuto  
+
+Scoperte:
+- annotazioni in cui un metodo di una classe ritorna la stessa classe richiede che all'inizio ci sia form __ future __ import annotations
+
   
