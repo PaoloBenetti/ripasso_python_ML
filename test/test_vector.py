@@ -109,3 +109,9 @@ def test_poly_reversed():
     ingresso = [Vector2D(1, 1), Vector2D(2, 2), Vector2D(3, 3)]
     pippo = Polyline(ingresso)
     assert list(reversed(pippo)) == [Vector2D(3, 3), Vector2D(2, 2), Vector2D(1, 1)]
+
+
+def test_fib_lista():
+    fin = FibonacciIterator()
+    gen = list(islice(fin, 8))
+    assert gen == [0,1,1,2,3,5,8,13]
