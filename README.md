@@ -44,3 +44,10 @@ Scrivi un iteratore custom FibonacciIterator (classe con __next__) che genera Fi
 Scoperte:  
 - Un iterabile è un oggetto che costruisce un iteratore con la chiamata __ iter __ , un iteratore è una classe che implementa next e gestisce il flusso di accesso
 - StopIteration è l'eccezione da sollevare per mettere fine all'iteratore, altrimenti si avrà un accesso infinito
+
+Giorno 2: 14/07
+Riscrivi FibonacciIterator come funzione generatore (def fib(): yield ...). Confronta leggibilità e uso di memoria (sys.getsizeof) tra [x**2 for x in range(1_000_000)] e (x**2 for x in range(1_000_000))  
+
+Scoperte:
+- Python adotta la convenzione per cui tutti i nomi di funzione sono minuscoli e possono usare underscore
+- lazy fa riferimento a yield, quindi generazione e consumo di un elemento alla volta
