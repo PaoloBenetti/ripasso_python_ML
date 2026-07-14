@@ -46,8 +46,16 @@ Scoperte:
 - StopIteration è l'eccezione da sollevare per mettere fine all'iteratore, altrimenti si avrà un accesso infinito
 
 Giorno 2: 14/07
-Riscrivi FibonacciIterator come funzione generatore (def fib(): yield ...). Confronta leggibilità e uso di memoria (sys.getsizeof) tra [x**2 for x in range(1_000_000)] e (x**2 for x in range(1_000_000))  
+Riscrivi FibonacciIterator come funzione generatore (def fib(): yield ...). Confronta leggibilità e uso di memoria (sys.getsizeof) tra [x**2 for x in range(1_000_000)] e (x**2 for x in range(1_000_000))    
 
 Scoperte:
 - Python adotta la convenzione per cui tutti i nomi di funzione sono minuscoli e possono usare underscore
 - lazy fa riferimento a yield, quindi generazione e consumo di un elemento alla volta
+
+Giorno 3: 14/07
+Prendi un dataset "finto" (lista di dict con campi tipo {"categoria": ..., "valore": ...}) e usa groupby (con dati pre-ordinati!) per aggregare per categoria, islice per paginare, accumulate per somme cumulative  
+
+Scoperte:
+- groupby non funziona come sql e pretende che il vettore sia già ordinato, per ottenere risultati logici
+- Attenzione a ricordarsi quando sono ritornati dei generatori
+- Un generatore, una volta consumato, è inutilizzabile
