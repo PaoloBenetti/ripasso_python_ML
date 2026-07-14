@@ -92,4 +92,29 @@ def fib_generator(stop):
         f1, f2 = f2, f1 + f2
 
 
+import itertools as it
+# generazione dataset
+dataset = []
+categorie = ['film', 'libro', 'libro', 'film', 'film']
+titoli = ['ubot15', 'ubot15', 'michi17', 'michi17','valerio']
+valori = [5,3,2,2,1]
+for i in range(5):
+    pippo = {'categoria': categorie[i], 'titolo': titoli[i], 'valore': valori[i]}
+    dataset.append(pippo)
+# group by
+# richiede ordinamento preventivo per chiave
+dataset_ordinato = sorted(dataset, key=lambda x: x['categoria'])
+# g iteratore, per visualizzare lo metti in una lista, attenzione che viene consumato
+for k, g in it.groupby(dataset_ordinato, key=lambda x : x['categoria']):
+    print(f' {k} --> {list(g)}')
+
+# islice
+
+for x in it.islice(dataset, 1, 4):
+    print(x)
+import operator
+# accumulate genera un iteratore da utilizzare
+accumulo = list(it.accumulate(valori, operator.add))
+for i in accumulo:
+    print(i)
 
