@@ -1,6 +1,7 @@
 from core.vector import Vector2D, Polyline
 import pytest
 import dataclasses
+import inspect
 
 def test_uguaglianza_e_com():
     assert Vector2D(2,2) == Vector2D(2,2)
@@ -115,3 +116,11 @@ def test_fib_lista():
     fin = FibonacciIterator()
     gen = list(islice(fin, 8))
     assert gen == [0,1,1,2,3,5,8,13]
+
+def test_fib_gen():
+    gen = [x for x in fib_generator(8)]
+    assert gen == [0,1,1,2,3,5,8,13]
+
+def test_fib_gen_e_generatore():
+    gen = fib_generator(8)
+    assert inspect.isgenerator(gen)
