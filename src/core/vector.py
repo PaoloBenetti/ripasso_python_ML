@@ -85,7 +85,11 @@ class FibonacciIterator:
         self.f1, self.f2 = self.f2, self.f1 + self.f2
         return res
 
-
+def fib_generator(stop):
+    f1, f2 = 0, 1
+    for x in range(stop):
+        yield f1
+        f1, f2 = f2, f1 + f2
 
 
 
