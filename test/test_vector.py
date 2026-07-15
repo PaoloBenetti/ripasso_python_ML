@@ -1,6 +1,7 @@
-from core.vector import Vector2D, Polyline
+from core.vector import Vector2D, Polyline, FibonacciIterator, fib_generator, GenInfinito, gen_multisource
 import pytest
 import dataclasses
+from itertools import islice
 import inspect
 
 def test_uguaglianza_e_com():
@@ -124,3 +125,17 @@ def test_fib_gen():
 def test_fib_gen_e_generatore():
     gen = fib_generator(8)
     assert inspect.isgenerator(gen)
+
+def test_gen_infinito_produce_generatori_indipendenti():
+    g = GenInfinito()
+    iteratore1 = iter(g)
+    iteratore2 = iter(g)
+    assert iteratore1 is not iteratore2
+
+def test_multisource_combina_in_ordine():
+    risultato = list(gen_multisource([1, 2], (3, 4), range(5, 7)))
+    assert risultato == [1, 2, 3, 4, 5, 6]
+
+def test_multisource_con_non_iterabile_solleva_typeerror():
+    with pytest.raises(TypeError):
+        list(gen_multisource([1, 2], 42))  # 42 non è iterabile
