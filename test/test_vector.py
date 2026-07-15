@@ -139,3 +139,14 @@ def test_multisource_combina_in_ordine():
 def test_multisource_con_non_iterabile_solleva_typeerror():
     with pytest.raises(TypeError):
         list(gen_multisource([1, 2], 42))  # 42 non è iterabile
+
+def test_poli_dist_gene():
+    ingresso = [Vector2D(1, 1), Vector2D(2, 2), Vector2D(3, 3)]
+    pippo = Polyline(ingresso)
+    assert inspect.isgenerator(pippo.distanze())
+
+def test_poli_dist_valori():
+    ingresso = [Vector2D(0, 0), Vector2D(3, 4)]  # 3-4-5, distanza nota = 5
+    pippo = Polyline(ingresso)
+    distanze = list(pippo.distanze())
+    assert distanze == [5.0]
