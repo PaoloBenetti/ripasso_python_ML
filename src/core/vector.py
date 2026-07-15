@@ -92,7 +92,39 @@ def fib_generator(stop):
         f1, f2 = f2, f1 + f2
 
 
+import sys
+from random import randint
 import itertools as it
+
+def gen_multisource(*iterabili):
+    # controllo che tutti gli elementi implementino un iteratore
+    # non prevedere eccezione ma catturarla al momento opportuno
+    # delego ad ogni iteratore
+    for ite in iterabili:
+        try:
+            yield from ite
+        except TypeError:
+            raise TypeError(f'{ite!r} not iterable!') from None
+        
+# generatore infinito
+class GenInfinito:
+
+    def __iter__(self):
+        while True:
+            a,b,c = randint(1,6), randint(1,6), randint(1,6)
+            yield a,b,c
+# utilizzo
+for ex in it.islice(GenInfinito(), 2, 4):
+    print(ex)
+
+
+lista = [x**2 for x in range(1_000_000)]
+generatore = (x**2 for x in range(1_000_000))
+
+print(sys.getsizeof(lista))       # dell'ordine di diversi MB
+print(sys.getsizeof(generatore))  # poche decine di byte, costante
+
+
 # generazione dataset
 dataset = []
 categorie = ['film', 'libro', 'libro', 'film', 'film']
