@@ -59,3 +59,10 @@ Scoperte:
 - groupby non funziona come sql e pretende che il vettore sia già ordinato, per ottenere risultati logici
 - Attenzione a ricordarsi quando sono ritornati dei generatori
 - Un generatore, una volta consumato, è inutilizzabile
+
+Giorno 4: 15/07
+Scrivi un generatore che combina più sorgenti dati (es. più liste/file) con yield from, e un generatore infinito di batch casuali che usi solo con islice per limitarlo  
+
+Scoperte:
+- Spesso non serve anticipare l'errore ma catturarlo nel momento in cui avviene (try except)
+- Utilizza TypeError come eccezione da elevare
