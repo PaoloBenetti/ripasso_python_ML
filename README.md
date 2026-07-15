@@ -66,3 +66,9 @@ Scrivi un generatore che combina più sorgenti dati (es. più liste/file) con yi
 Scoperte:
 - Spesso non serve anticipare l'errore ma catturarlo nel momento in cui avviene (try except)
 - Utilizza TypeError come eccezione da elevare
+
+Giorno 5: 15/07  
+Prendi la Polyline della settimana 1 e aggiungi un metodo che genera lazy tutte le distanze tra punti consecutivi (generator, non lista). Scrivi un test che verifica che l'oggetto ritornato sia effettivamente un generatore (non una lista)  
+
+Scoperte:
+- Il test può verificare il tipo ma deve anche verificare che il funzionamento sia corretto
