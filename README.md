@@ -75,10 +75,20 @@ Scoperte:
 
 __Settimana 3__  
 Giorno 1: 16/07  
-Scrivi un iteratore custom FibonacciIterator (classe con __next__) che genera Fibonacci senza limite superiore, poi confrontalo con la versione "sbagliata" che rimaterializza tutto in una lista  
+Scrivi @timer (misura tempo di esecuzione) e @log_calls (logga argomenti e risultato) senza functools.wraps, poi rifallo con — confronta help(funzione_decorata) prima e dopo  
 
 Scoperte:
 - l'operatore * va prima ogni volta che devi inserire argomenti da una lista e doppio se da dizionario
 - __ doc __ registra la stringa inserita come commento all'inizio del corpo di una funzione """ pippo """
 - filter, se lasci None la funzione di confronto, ritorna solo i valori non falsi
+
+Giorno 2: 16/07  
+Scrivi @retry(times=3, exceptions=(ValueError,)) che ritenta l'esecuzione di una funzione. Poi scrivi un decoratore di classe @auto_repr che aggiunge un __repr__ automatico basato sugli attributi dell'istanza  
+
+Scoperte:
+- Il test andrebbe scritto durante la scrittura del codice, non dopo. Comunque per verificare
+- di solito hai a che fare con istanze, che non hanno attributo __ name __ . utilizza type(a) per ricavare la classe e poi richiamare il nome
+- try except accetta una tupla di eccezioni
+- ritorna sempre nei decoratori
+- Fallire silenziosamente (return none) è un disastro
 
