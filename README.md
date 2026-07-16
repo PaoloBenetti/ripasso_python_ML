@@ -72,3 +72,13 @@ Prendi la Polyline della settimana 1 e aggiungi un metodo che genera lazy tutte 
 
 Scoperte:
 - Il test può verificare il tipo ma deve anche verificare che il funzionamento sia corretto
+
+__Settimana 3__  
+Giorno 1: 16/07  
+Scrivi un iteratore custom FibonacciIterator (classe con __next__) che genera Fibonacci senza limite superiore, poi confrontalo con la versione "sbagliata" che rimaterializza tutto in una lista  
+
+Scoperte:
+- l'operatore * va prima ogni volta che devi inserire argomenti da una lista e doppio se da dizionario
+- __ doc __ registra la stringa inserita come commento all'inizio del corpo di una funzione """ pippo """
+- filter, se lasci None la funzione di confronto, ritorna solo i valori non falsi
+
