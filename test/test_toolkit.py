@@ -29,3 +29,51 @@ def test_log_res_corretto():
         return a + b
 
     assert somma(2,3) == 5
+
+@auto_repr
+class Punto:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+def test_auto_repr_contiene_nome_classe_e_attributi():
+    p = Punto(1, 2)
+    assert repr(p) == "Punto(x=1, y=2)"
+
+def test_retry_ritorna_risultato_dopo_fallimenti_transitori():
+    calls = {"count": 0}
+    @retry(times=3, exceptions=(ValueError,))
+    def flaky():
+        calls["count"] += 1
+        if calls["count"] < 3:
+            raise ValueError("fallisce apposta")
+        return "ok"
+    assert flaky() == "ok"
+    assert calls["count"] == 3
+
+def test_retry_rilancia_dopo_aver_esaurito_i_tentativi():
+    @retry(times=2, exceptions=(ValueError,))
+    def sempre_fallisce():
+        raise ValueError("nope")
+    with pytest.raises(ValueError):
+        sempre_fallisce()
+
+def test_retry_rispetta_il_parametro_times():
+    calls = {"count": 0}
+    @retry(times=2, exceptions=(ValueError,))
+    def sempre_fallisce():
+        calls["count"] += 1
+        raise ValueError("nope")
+    with pytest.raises(ValueError):
+        sempre_fallisce()
+    assert calls["count"] == 2  # non 3: verifica che `times` sia rispettato
+
+def test_retry_non_intercetta_eccezioni_non_previste():
+    calls = {"count": 0}
+    @retry(times=3, exceptions=(ValueError,))
+    def solleva_type_error():
+        calls["count"] += 1
+        raise TypeError("imprevisto")
+    with pytest.raises(TypeError):
+        solleva_type_error()
+    assert calls["count"] == 1  # non deve ritentare su un'eccezione non prevista
