@@ -92,10 +92,19 @@ Scoperte:
 - ritorna sempre nei decoratori
 - Fallire silenziosamente (return none) è un disastro
 
-Giorno 3: 16/07  
+Giorno 3: 17/07  
 Implementa memoize da zero con una closure e un dizionario cache, poi confrontalo con functools.lru_cache — stesso comportamento? Cosa manca alla tua versione (es. gestione argomenti unhashable)?  
 
 Scoperte:  
 - Le chiavi dei dizionari devo essere hashabili, quindi le tuple vanno ordinate. Trucco, rendi tutto una tupla (lista, tupla(dizionario))
 - Inspect.getclosure serve a controllolare le variabili libere, basta lasciare il nome della funzione a cui è stato applicato il decoratore
 - @cache sfrutta risultati già ottenuti per ottimizzare (anche @lru_cache)
+
+
+Giorno 4: 17/07  
+Scrivi un context manager Timer (a classe) che stampa il tempo trascorso all'uscita del blocco with, anche in caso di eccezione. Riscrivilo con @contextmanager e confronta  
+
+Scoperte:
+- il blocco try except finally può escludere except;
+- La gestione del contesto con with prevede __ enter __ da eseguire all'inizio e __ end __ da eseguire alla fine;
+- gestione controllo può essere gestita tramite classe o funzione con @ contextmanager
