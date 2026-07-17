@@ -1,5 +1,6 @@
 import functools
 import time
+from functools import lru_cache
 
 def timer(func):
     @functools.wraps(func)
@@ -52,3 +53,22 @@ def auto_repr(cls):
 
     return cls
 
+def memoization(func):
+    registro = {}
+    def corpo(*args, **kwargs):
+        chiave = (args, tuple(sorted(kwargs.items()))) # trasformare in tupla ordiata, per non avere ciavi diverse ma equivaleti
+        if chiave in registro:
+            return registro[chiave]
+        res = func(*args, **kwargs)
+        registro[chiave] = res
+        return res
+
+    return corpo
+
+def memoization_2(func):
+    @lru_cache
+    def corpo(*args, **kwargs):
+
+        return func(*args, **kwargs)
+
+    return corpo
