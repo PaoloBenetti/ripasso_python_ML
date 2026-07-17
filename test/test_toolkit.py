@@ -106,3 +106,29 @@ def test_memoi_kwargs():
     tmp = somma(2,b=3)
     tmp_2 = somma(2,b=10)
     assert tmp != tmp_2
+
+def test_context_timer_errore():
+    def sempre_fallisce():
+        raise ValueError("nope")
+    with pytest.raises(ValueError):
+        with TimerContext() as a:
+            sempre_fallisce()
+    assert isinstance(a,TimerContext)
+    assert a.start is not None
+
+def test_context_timer_noerr():
+    with TimerContext() as a:
+        res = 2+2
+    assert res == 4
+
+def test_contextlib_timer_errore():
+    def sempre_fallisce():
+        raise ValueError("nope")
+    with pytest.raises(ValueError):
+        with TimerContext() as a:
+            sempre_fallisce()
+
+def test_contextlib_timer_noerr():
+    with timercontext() as a:
+        res = 2+2
+    assert res == 4
