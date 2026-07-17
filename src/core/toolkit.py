@@ -1,6 +1,7 @@
 import functools
 import time
 from functools import lru_cache
+from contextlib import contextmanager
 
 def timer(func):
     @functools.wraps(func)
@@ -72,3 +73,23 @@ def memoization_2(func):
         return func(*args, **kwargs)
 
     return corpo
+
+class TimerContext:
+
+    def __enter__(self):
+        self.start = time.perf_counter()
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        elap_time = time.perf_counter() - self.start
+        print(f'Tempo esecuzione : {elap_time}')
+        # non propagare ulteriormente eccezione
+        return False
+
+@contextmanager
+def timercontext():
+    t_start = time.perf_counter()
+    try:
+        yield t_start
+    finally:
+        print(f'Tempo trascorso: {time.perf_counter() - t_start}')
