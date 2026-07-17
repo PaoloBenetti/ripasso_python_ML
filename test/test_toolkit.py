@@ -1,4 +1,7 @@
-from core.toolkit import timer, log_calls
+import inspect
+
+from core.toolkit import timer, log_calls, retry, auto_repr, memoization
+import pytest
 
 def test_timer_preserva_meta():
     @timer
@@ -77,3 +80,29 @@ def test_retry_non_intercetta_eccezioni_non_previste():
     with pytest.raises(TypeError):
         solleva_type_error()
     assert calls["count"] == 1  # non deve ritentare su un'eccezione non prevista
+
+def test_memoi_restituzioe_risutato():
+    @memoization
+    def somma(a, b):
+        """Somma due numeri"""
+        return a + b
+    info = inspect.getclosurevars(somma).nonlocals
+    assert len(info['registro']) == 0
+    tmp_1 = somma(2,3)
+    assert tmp_1 == 5
+    tmp = somma(1,2)
+    info = inspect.getclosurevars(somma).nonlocals
+    assert len(info['registro']) == 2
+    tmp = somma(2,3)
+    info = inspect.getclosurevars(somma).nonlocals
+    assert len(info['registro']) == 2
+    assert tmp == tmp_1
+
+def test_memoi_kwargs():
+    @memoization
+    def somma(a, b):
+        """Somma due numeri"""
+        return a + b
+    tmp = somma(2,b=3)
+    tmp_2 = somma(2,b=10)
+    assert tmp != tmp_2
