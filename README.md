@@ -108,3 +108,11 @@ Scoperte:
 - il blocco try except finally può escludere except;
 - La gestione del contesto con with prevede __ enter __ da eseguire all'inizio e __ end __ da eseguire alla fine;
 - gestione controllo può essere gestita tramite classe o funzione con @ contextmanager
+
+Giorno 5: 19/07  
+Metti insieme in un modulo toolkit.py: @timer, @retry, @log_calls, memoize/lru_cache, context manager Timer e uno per gestione risorse (es. apertura/chiusura "finta" di una connessione). Questo modulo lo riuserai nei prossimi mesi  
+
+Scoperte:  
+- Ricorda che per un context manager funzione serve il @ contextmanager e il piano try .. finally con yield;
+- Una variabile closure viene mantenuta finchè il suo reference counter non scende a zero,
+- ritorna un valore falso permette all'eccezione di propagarsi nel context manager
