@@ -2,6 +2,7 @@ import functools
 import time
 from functools import lru_cache
 from contextlib import contextmanager
+from dataclasses import dataclass,field
 
 def timer(func):
     @functools.wraps(func)
@@ -93,3 +94,17 @@ def timercontext():
         yield t_start
     finally:
         print(f'Tempo trascorso: {time.perf_counter() - t_start}')
+
+@dataclass
+class FakeResource:
+    dati: list = field(default_factory=list)
+    aperta: bool = True
+
+@contextmanager
+def gestione_risorse():
+    risorsa = FakeResource()
+    try:
+        yield risorsa
+    finally:
+        risorsa.aperta = False
+
