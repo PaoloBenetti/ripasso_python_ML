@@ -1,6 +1,6 @@
 import inspect
 
-from core.toolkit import timer, log_calls, retry, auto_repr, memoization
+from core.toolkit import timer, log_calls, retry, auto_repr, memoization, TimerContext, timercontext, gestione_risorse, FakeResource
 import pytest
 
 def test_timer_preserva_meta():
@@ -132,3 +132,23 @@ def test_contextlib_timer_noerr():
     with timercontext() as a:
         res = 2+2
     assert res == 4
+
+def test_gest_risorse_con_aperta():
+    with gestione_risorse() as a:
+        assert isinstance(a,FakeResource)
+        a.dati.append(24)
+        assert a.aperta is True
+        assert a.dati[0] == 24
+
+
+def test_gest_risorse_con_chiusa():
+    with gestione_risorse() as a:
+        a.dati.append(24)
+    assert a.aperta is False
+
+def test_gest_risorse_con_errore():
+    with pytest.raises(ValueError):
+        with gestione_risorse() as a:
+            a.dati.append(24)
+            raise ValueError("boom")
+    assert a.aperta is False  # la risorsa è stata comunque svuotata
