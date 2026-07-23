@@ -116,3 +116,14 @@ Scoperte:
 - Ricorda che per un context manager funzione serve il @ contextmanager e il piano try .. finally con yield;
 - Una variabile closure viene mantenuta finchè il suo reference counter non scende a zero,
 - ritorna un valore falso permette all'eccezione di propagarsi nel context manager
+
+
+__Settimana 4__  
+costruire una piccola libreria che sfrutti tutto ciò che hai fatto nelle settimane 1-3, non solo giustapposto ma integrato  
+Giorni 20/07 -> 23/07  
+
+Scoperte:  
+- __ iadd __ è il metodo che si occupa dell'implace +=
+- deepcopy va usato con attenzione: se un oggetto contiene altri oggetti, anche questi vengono duplicati, meglio shallow copy e poi copia riferimenti
+- NotImplemented serve dentro alcuni metodi per segnalare il non saper fare qualcosa e passare a quello dell'altro, normalmente serve usare Raise
+- Ricorda che se un test fa uso di meccaniche random, dei fissare il seed o forzare tramite monkeypatch un certo tipo di azione
