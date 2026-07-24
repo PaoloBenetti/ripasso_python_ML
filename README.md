@@ -120,6 +120,7 @@ Scoperte:
 
 __Settimana 4__  
 costruire una piccola libreria che sfrutti tutto ciò che hai fatto nelle settimane 1-3, non solo giustapposto ma integrato  
+
 Giorni 20/07 -> 23/07  
 
 Scoperte:  
@@ -127,3 +128,17 @@ Scoperte:
 - deepcopy va usato con attenzione: se un oggetto contiene altri oggetti, anche questi vengono duplicati, meglio shallow copy e poi copia riferimenti
 - NotImplemented serve dentro alcuni metodi per segnalare il non saper fare qualcosa e passare a quello dell'altro, normalmente serve usare Raise
 - Ricorda che se un test fa uso di meccaniche random, dei fissare il seed o forzare tramite monkeypatch un certo tipo di azione
+
+__Mese 2__
+
+__settimana 1__  
+Giorno 1: 24/07  
+Installa mypy, crea un mypy.ini (o sezione in pyproject.toml) con strict = true, lancialo su vector.py/gridpath.py/toolkit.py del Mese 1. Non correggere ancora nulla: fai solo l'inventario di cosa segnala  
+
+  
+Giorno 2: 24/07  
+Scrivi un Protocol per "qualcosa che ha coordinate" (es. HasCoordinates con un metodo coordinate() -> tuple[int,int]) e usalo come type hint in una funzione che accetta sia Agent sia altri oggetti "simili" senza richiedere eredità esplicita  
+
+Scoperte  
+- Protocoll verifica se quelle classi implementano i metodi corretti
+- duck typing statico sarà una cosa sempre opzionale in python
