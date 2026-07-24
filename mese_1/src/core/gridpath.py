@@ -22,7 +22,7 @@ class Grid(Iterable):
         y_in = 0 <= dy < self._n
         return x_in and y_in
 
-    def __add__(self, other):
+    def __add__(self, other) -> Grid:
         if not isinstance(other, Agent):
             return NotImplemented
         n_grid = type(self)(self._n)
@@ -30,7 +30,7 @@ class Grid(Iterable):
         n_grid += other
         return n_grid
 
-    def __iadd__(self, other: Coordinates):
+    def __iadd__(self, other: Coordinates) -> Grid:
         x, y = other.coordinate()
         if not self.is_legal(x,y):
             raise ValueError(f"Posizione ({x}, {y}) fuori dai limiti della griglia")
