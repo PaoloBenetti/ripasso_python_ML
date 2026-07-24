@@ -5,6 +5,7 @@ from copy import deepcopy
 
 from core.toolkit import log_calls, retry, TimerContext
 from random import sample
+from typing import Protocol
 
 
 # Classe per la gestione di una piccola mappa a quadrati
@@ -29,11 +30,10 @@ class Grid(Iterable):
         n_grid += other
         return n_grid
 
-    def __iadd__(self, other):
-        if not isinstance(other, Agent):
-            return NotImplemented
-        if not self.is_legal(other._x, other._y):
-            raise ValueError(f"Posizione ({other._x}, {other._y}) fuori dai limiti della griglia")
+    def __iadd__(self, other: Coordinates):
+        x, y = other.coordinate()
+        if not self.is_legal(x,y):
+            raise ValueError(f"Posizione ({x}, {y}) fuori dai limiti della griglia")
         self._agenti.append(other)
         return self
 
@@ -80,6 +80,9 @@ class Grid(Iterable):
         self._agenti.remove(agente)
 
 
+class Coordinates(Protocol):
+
+    def coordinate(self) -> tuple[int,int]: ...
 
 
 
@@ -126,7 +129,6 @@ class Agent:
     def move_casual(self):
         scelta = [(0,1), (0,-1), (1,0), (-1,0)]
         self.move(*sample(scelta,1))
-
 
 
 
