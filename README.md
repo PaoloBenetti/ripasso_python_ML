@@ -142,3 +142,11 @@ Scrivi un Protocol per "qualcosa che ha coordinate" (es. HasCoordinates con un m
 Scoperte  
 - Protocoll verifica se quelle classi implementano i metodi corretti
 - duck typing statico sarà una cosa sempre opzionale in python
+
+Giorno 3: 25/07  
+Scrivi una funzione generica primo_o_default[T](lista: list[T], default: T) -> T, e/o rendi Polyline-style container generico rispetto al tipo contenuto (se ti va di generalizzare oltre Vector2D)  
+
+Scoperte:  
+- La verifica del tipo non avviene se non in modo statico
+- O cotrolli tutti i tipi durante il programma, o lasci il type hint e poi elimini i controlli dove hai variabili e cose generiche
+- Typevar ora ha la sintassi [T]
