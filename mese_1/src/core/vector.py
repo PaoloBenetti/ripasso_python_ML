@@ -3,6 +3,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from collections.abc import Sequence, Iterator
 import math
+from typing import overload
+
 
 @dataclass(frozen=True)
 class Vector2D:
@@ -60,6 +62,13 @@ class Polyline[T](Sequence[T]):
 
     def __len__(self) -> int:
         return len(self.linea)
+
+    @overload
+    def __getitem__(self, item: int) -> T:
+        ...
+    @overload
+    def __getitem__(self, item: slice) -> Polyline:
+        ...
 
     def __getitem__(self, item: int | slice) -> T|Polyline:
         if isinstance(item, slice):
