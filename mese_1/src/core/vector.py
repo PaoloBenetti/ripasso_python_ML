@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from collections.abc import Sequence
+from collections.abc import Sequence, Iterator
 import math
 
 @dataclass(frozen=True)
@@ -55,29 +55,26 @@ class Vector2D:
         return f'Vettore di coordinate ( {self.x}, {self.y})'
 
 @dataclass
-class Polyline(Sequence):
-    linea: list[Vector2D]
+class Polyline[T](Sequence[T]):
+    linea: list[T]
 
     def __len__(self) -> int:
         return len(self.linea)
 
-    def __getitem__(self, item: int|slice) -> Vector2D|Polyline:
+    def __getitem__(self, item: int | slice) -> T|Polyline:
         if isinstance(item, slice):
             cls = type(self)
             return cls(self.linea[item])
         return self.linea[item]
 
-    def __setitem__(self, key: int|slice, value: Vector2D|list[Vector2D]) -> None:
-        if not isinstance(value, Vector2D): # in fase ottimizzazione gli assert spariscono
-            raise TypeError(f"Expected Vector2D, got {type(value).__name__}")
+    def __setitem__(self, key: int | slice, value: T | list[T]) -> None:
         self.linea[key] = value
 
-    def distanze(self):
+    def distanze(self) -> Iterator[float]:
         for i in range(len(self) - 1):
             x_dist = (self[i+1].x - self[i].x) **2
             y_dist = (self[i+1].y - self[i].y) **2
             yield math.sqrt(x_dist + y_dist)
-
 
 class FibonacciIterator:
     def __init__(self):
