@@ -140,7 +140,7 @@ Giorno 2: 24/07
 Scrivi un Protocol per "qualcosa che ha coordinate" (es. HasCoordinates con un metodo coordinate() -> tuple[int,int]) e usalo come type hint in una funzione che accetta sia Agent sia altri oggetti "simili" senza richiedere eredità esplicita  
 
 Scoperte  
-- Protocoll verifica se quelle classi implementano i metodi corretti
+- Protocoll verifica se quelle classi implementano i metodi corretti e le variabili necessarie
 - duck typing statico sarà una cosa sempre opzionale in python
 
 Giorno 3: 25/07  
@@ -158,3 +158,12 @@ Scoperte:
 - overload ha senso se al variare dei tipi in ingresso varia il tipo in uscita
 - typeddict non ha molto scopo se non indicare nello specifico cosa esca. non adatto a gestire formato JSON
 - serializzare ha senso solo senza riferimenti a oggetti "vivi"
+
+Giorno 5: 25/07  
+Correggi tutti gli errori residui su vector.py, gridpath.py, toolkit.py. Obiettivo: zero errori con –strict  
+
+Scoperte:  
+- Se aggiungi il commento  type : ignore mypy non controlla, utile quando si utilizzano funzioni
+- Utilizza ParamSpec per gestire i parametri generici delle funzioni *args, **kwargs
+- Alle volte è necessario fare presente il tipo in sede di dichiarazione
+- Callable è utilizzato per qualsiasi oggetto che possa essere4 usato come funzione
