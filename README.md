@@ -150,3 +150,11 @@ Scoperte:
 - La verifica del tipo non avviene se non in modo statico
 - O cotrolli tutti i tipi durante il programma, o lasci il type hint e poi elimini i controlli dove hai variabili e cose generiche
 - Typevar ora ha la sintassi [T]
+
+Giorno 4: 25/07  
+Usa @overload per una funzione che si comporta diversamente in base al tipo di input (es. cerca(g: Grid, chiave: str) -> list[Agent] vs cerca(g: Grid, chiave: tuple) -> list[Agent], già presente implicitamente in Grid.__getitem__); definisci un TypedDict per lo "stato" di un agente se dovessi serializzarlo  
+
+Scoperte:  
+- overload ha senso se al variare dei tipi in ingresso varia il tipo in uscita
+- typeddict non ha molto scopo se non indicare nello specifico cosa esca. non adatto a gestire formato JSON
+- serializzare ha senso solo senza riferimenti a oggetti "vivi"
