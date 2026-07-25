@@ -5,7 +5,7 @@ from copy import deepcopy
 
 from core.toolkit import log_calls, retry, TimerContext
 from random import sample
-from typing import Protocol
+from typing import Protocol,, TypedDict
 
 
 # Classe per la gestione di una piccola mappa a quadrati
@@ -85,7 +85,11 @@ class Coordinates(Protocol):
     def coordinate(self) -> tuple[int,int]: ...
 
 
-
+class AgentState(TypedDict):
+    nome: str
+    x: int
+    y: int
+    grid: int
 
 
 # Classe per implementazione agenti
@@ -129,6 +133,11 @@ class Agent:
     def move_casual(self):
         scelta = [(0,1), (0,-1), (1,0), (-1,0)]
         self.move(*sample(scelta,1))
+
+    def serialize(self) -> AgentState:
+        return AgentState(nome=self._nome,
+                          x=self._x, y=self._y,
+                          grid=self._grid._n)
 
 
 
