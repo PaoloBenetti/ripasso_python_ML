@@ -173,4 +173,15 @@ __Settimana 2__
 Giorno 1: 27/07  
 Scrivi una funzione che scarica (o simula con time.sleep) N "risorse" in sequenza, poi la stessa con threading.Thread, misura il tempo con @timer dal tuo toolkit.py e confronta  
 
-Scoperte:
+Scoperte:  
+- Le funzionalità di GIL, che permette di guadagnare tempo solo su processi I/O Bound
+- GIL si può evitare solo aggirando il vincolo, con codice non python
+- Thread parte con start e attende con join il risultato.
+
+Giorno 2: 27/07  
+Scrivi una funzione volutamente CPU-bound (es. calcolo su una lista grande di Vector2D, tipo somma di distanze) e confronta tempo sequenziale vs multiprocessing.Pool.map  
+
+Scoperte:  
+- Per aggirare GIL si utilizza multithread.Pool
+- In fase di produzione si utilizza meccanismi di aggregazione per rendere il costo delle comunicazioni minimo, parametro chunksize
+- Pool prevede metodo map, che implementa le stesse meccaniche del map di itertools
