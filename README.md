@@ -1,4 +1,5 @@
-# ripasso_mese1
+# Ripasso
+## mese1
 Ripasso privato su pyton  
 
 Giorno 1: 09/07  
@@ -129,7 +130,7 @@ Scoperte:
 - NotImplemented serve dentro alcuni metodi per segnalare il non saper fare qualcosa e passare a quello dell'altro, normalmente serve usare Raise
 - Ricorda che se un test fa uso di meccaniche random, dei fissare il seed o forzare tramite monkeypatch un certo tipo di azione
 
-__Mese 2__
+## Mese 2
 
 __settimana 1__  
 Giorno 1: 24/07  
@@ -167,3 +168,9 @@ Scoperte:
 - Utilizza ParamSpec per gestire i parametri generici delle funzioni *args, **kwargs
 - Alle volte è necessario fare presente il tipo in sede di dichiarazione
 - Callable è utilizzato per qualsiasi oggetto che possa essere4 usato come funzione
+
+__Settimana 2__
+Giorno 1: 27/07  
+Scrivi una funzione che scarica (o simula con time.sleep) N "risorse" in sequenza, poi la stessa con threading.Thread, misura il tempo con @timer dal tuo toolkit.py e confronta  
+
+Scoperte:
