@@ -2,7 +2,9 @@ import itertools
 from collections.abc import Iterable
 from time import sleep
 from threading import Thread
+from multiprocessing import Pool
 
+from core.vector import Vector2D
 from core.toolkit import log_calls, retry, TimerContext, timer
 from random import sample
 from typing import Protocol, overload, TypedDict, Self, Generator
@@ -161,5 +163,28 @@ def scarica_res_th(tempi: list[int]) -> None:
     for th in lista_thread:
         th.join()
 
+def pezzo_dist(x: tuple[Vector2D,Vector2D]) -> float:
+    a,b = x
+    return math.sqrt((a.x -b.x)**2 + (a.y-b.y)**2)
 
+@timer
+def calcola_dist(lista_vet:list[Vector2D]) -> float:
+    combinazioni = list(itertools.combinations(lista_vet,2))
+    somma = 0.0
+    for x in combinazioni:
+        somma += pezzo_dist(x)
+    return somma
+
+def somma_blocco(blocco: list[tuple[Vector2D, Vector2D]]) -> float:
+    return sum(pezzo_dist(x) for x in blocco)
+
+@timer
+def calcola_dist_pool(lista_vet: list[Vector2D]) -> float:
+    combinazioni = list(itertools.combinations(lista_vet, 2))
+    n_workers = 4
+    dim_blocco = len(combinazioni) // n_workers + 1
+    blocchi = [combinazioni[i:i+dim_blocco] for i in range(0, len(combinazioni), dim_blocco)]
+    with Pool(processes=n_workers) as pool:
+        risultati = pool.map(somma_blocco, blocchi)
+    return sum(risultati)
 
