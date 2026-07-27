@@ -1,4 +1,5 @@
 import itertools
+import asyncio
 from collections.abc import Iterable
 from time import sleep
 from threading import Thread
@@ -187,4 +188,12 @@ def calcola_dist_pool(lista_vet: list[Vector2D]) -> float:
     with Pool(processes=n_workers) as pool:
         risultati = pool.map(somma_blocco, blocchi)
     return sum(risultati)
+    
+async def attesa(t_star: int)-> bool:
+    await asyncio.sleep(t_star)
+    return True
 
+async def gestione_risorse(lista_tempi: list[int]) -> None:
+    lista_task = [attesa(i) for i in lista_tempi]
+    lista_risposte = await asyncio.gather(*lista_task)
+    print(lista_risposte)
