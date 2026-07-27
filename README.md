@@ -185,3 +185,11 @@ Scoperte:
 - Per aggirare GIL si utilizza multithread.Pool
 - In fase di produzione si utilizza meccanismi di aggregazione per rendere il costo delle comunicazioni minimo, parametro chunksize
 - Pool prevede metodo map, che implementa le stesse meccaniche del map di itertools
+
+Giorno 3: 27/07  
+Scrivi una funzione async def che simula I/O con asyncio.sleep, esegui più chiamate concorrenti con asyncio.gather  
+
+Scoperte:  
+- l'utilizzo delle meccaniche di asyncio prevede le keyword async e await;
+- Le svolgo su un loop gestito attraverso il meccanismo di run;
+- gather avvolge le mie corutine dentro un oggetto task
