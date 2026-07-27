@@ -1,9 +1,9 @@
 import itertools
 from collections.abc import Iterable
-from enum import Enum
-from copy import deepcopy
+from time import sleep
+from threading import Thread
 
-from core.toolkit import log_calls, retry, TimerContext
+from core.toolkit import log_calls, retry, TimerContext, timer
 from random import sample
 from typing import Protocol, overload, TypedDict, Self, Generator
 
@@ -141,7 +141,25 @@ class Agent:
                           grid=self._grid._n)
 
 
+def download_res(tempo: int) -> None:
+    sleep(tempo)
 
+@timer
+def scarica_risorse(tempi: list[int]) -> None:
+    for t in tempi:
+        download_res(t)
+        print(f'finito {t} secondi')
+
+@timer
+def scarica_res_th(tempi: list[int]) -> None:
+    lista_thread = []
+    for t in tempi:
+        th = Thread(target=download_res, args=(t,))
+        th.start()
+        lista_thread.append(th)
+        print(f'finito {t} secondi')
+    for th in lista_thread:
+        th.join()
 
 
 
