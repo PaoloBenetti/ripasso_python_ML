@@ -206,4 +206,12 @@ Giorno 5: 28/07
 Scrivi un piccolo script che con aiohttp (o httpx in modalità async) recupera dati da 2-3 URL reali in parallelo, con gestione di timeout ed errori, e rate limiting basilare (asyncio.Semaphore)  
 
 Scoperte:  
-- pipi
+- Gather di asyncio colleziona solo i risultati, per aggiunere le eccezioni serve il par return exeption
+- operazioni internet sono configurabili come io
+
+__Settimana 3__  
+Giorno 1: 28/07  
+Scrivi un pyproject.toml minimo per il repo del Mese 1, pip install -e ., verifica che import core.vector funzioni da qualunque directory  
+
+Scoperte:  
+- pii
