@@ -4,6 +4,7 @@ from collections.abc import Iterable
 from time import sleep
 from threading import Thread
 from multiprocessing import Pool
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from core.vector import Vector2D
 from core.toolkit import log_calls, retry, TimerContext, timer
@@ -167,6 +168,15 @@ def scarica_res_th(tempi: list[int]) -> None:
 def pezzo_dist(x: tuple[Vector2D,Vector2D]) -> float:
     a,b = x
     return math.sqrt((a.x -b.x)**2 + (a.y-b.y)**2)
+
+@timer
+def scarica_res_pool(tempi: list[int]) -> None:
+    with ThreadPoolExecutor(max_workers=2) as esecutore:
+        finali = [esecutore.submit(download_res, t) for t in tempi]
+        for futuro in as_completed(finali):
+            eccezione = futuro.exception()
+            if eccezione is not None:
+                print(f'Rilevata eccezione: {type(eccezione).__name__}')
 
 @timer
 def calcola_dist(lista_vet:list[Vector2D]) -> float:
