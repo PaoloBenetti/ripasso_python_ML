@@ -208,10 +208,13 @@ Scrivi un piccolo script che con aiohttp (o httpx in modalità async) recupera d
 Scoperte:  
 - Gather di asyncio colleziona solo i risultati, per aggiunere le eccezioni serve il par return exeption
 - operazioni internet sono configurabili come io
+- la differenza tra asyncio e thread è che con il primo, attraverso await, si controlla la concorrenza e scala in termini di memoria 
 
 __Settimana 3__  
 Giorno 1: 28/07  
 Scrivi un pyproject.toml minimo per il repo del Mese 1, pip install -e ., verifica che import core.vector funzioni da qualunque directory  
 
 Scoperte:  
-- pii
+- il file pyproject serve per dare le indicazioni su cosa installare;
+- Se vuoi installare il comando utilizza pip install con opzione -e
+- 
