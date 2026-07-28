@@ -1,5 +1,6 @@
 import itertools
 import asyncio
+import aiohttp
 from collections.abc import Iterable
 from time import sleep
 from threading import Thread
@@ -207,3 +208,20 @@ async def gestione_risorse(lista_tempi: list[int]) -> None:
     lista_task = [attesa(i) for i in lista_tempi]
     lista_risposte = await asyncio.gather(*lista_task)
     print(lista_risposte)
+
+async def scraper_semplice(lista_url: list[str]) -> None:
+    async with aiohttp.ClientSession() as client:
+        lista_compiti = [fetcher(client, u) for u in lista_url]
+        lista_risposte = await asyncio.gather(*lista_compiti,return_exceptions=True )
+        for futuro in lista_risposte:
+            if isinstance(futuro, Exception):
+                print(f'Rilevata eccezione: {type(futuro).__name__}')
+            else:
+                print(f'Ricevuti {len(futuro)} caratteri')
+
+
+async def fetcher(client: aiohttp.ClientSession, url: str, timeout: int = 60) -> str:
+    async with client.get(url, timeout=timeout) as resp:
+        resp.raise_for_status()
+        msg = await resp.text()
+    return msg
