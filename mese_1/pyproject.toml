@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools >= 77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "spam-eggs"
+version = "0.2.3"
+dependencies = [
+  "aiohttp",
+]
+requires-python = ">= 3.14"
+authors = [
+  {name = "Paolo Benetti", email = "pippo@gmail.com"},
+]
+description = "Toy package."
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[project.optional-dependencies]
+dev = ["pytest", "mypy"]
