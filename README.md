@@ -193,3 +193,17 @@ Scoperte:
 - l'utilizzo delle meccaniche di asyncio prevede le keyword async e await;
 - Le svolgo su un loop gestito attraverso il meccanismo di run;
 - gather avvolge le mie corutine dentro un oggetto task
+
+Giorno 4: 28/07  
+Riscrivi l'esercizio del giorno 1 (I/O-bound) usando ThreadPoolExecutor, gestisci il caso in cui uno dei task solleva un'eccezione (as_completed, future.exception())  
+
+Scoperte:  
+- Thread pool executore ritorna un oggetto future che contiene i risultati dell'esecuzione (done e exception)
+- qui richiede di usare submit
+- Anche questo metodo aggira il GIL
+
+Giorno 5: 28/07  
+Scrivi un piccolo script che con aiohttp (o httpx in modalità async) recupera dati da 2-3 URL reali in parallelo, con gestione di timeout ed errori, e rate limiting basilare (asyncio.Semaphore)  
+
+Scoperte:  
+- pipi
