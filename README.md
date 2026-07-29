@@ -214,7 +214,25 @@ __Settimana 3__
 Giorno 1: 28/07  
 Scrivi un pyproject.toml minimo per il repo del Mese 1, pip install -e ., verifica che import core.vector funzioni da qualunque directory  
 
+Giorno 2: 29/07  
+Riorganizza (se non l'hai già fatto) il repo in src/core/..., verifica che i test continuino a passare con pytest.ini o installazione editable  
+
+Giorno 3: 29/07  
+Aggiungi versionamento al pyproject.toml, inizializza un CHANGELOG.md essenziale con le voci del Mese 1  
+
 Scoperte:  
+uv è un modo automatizzato di gestire il file pyproject per rendere il pacchetto installabile  
+
+Giorno 4: 29/07  
+Scegli una libreria (consiglio typer, più moderna e basata su type hints — coerente con quanto fatto in settimana 1) e crea un comando gridpath a riga di comando (es. gridpath simulate --n 5 --agents 3 --steps 10)  
+
+Scoperte:  
+- Per inserire un argomento da linea di comando si inserisce una nota su pyproject e sul livello script
+
+Giorno 5: 29/07  
+Simula un'installazione pulita in un virtualenv nuovo (python -m venv, pip install -e .), verifica che gridpath --help funzioni, che i test girino, che mypy --strict sia pulito  
+
+
 - il file pyproject serve per dare le indicazioni su cosa installare;
 - Se vuoi installare il comando utilizza pip install con opzione -e
 - 
