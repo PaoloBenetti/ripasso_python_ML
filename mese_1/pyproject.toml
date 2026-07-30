@@ -7,6 +7,7 @@ name = "spam-eggs"
 version = "0.2.3"
 dependencies = [
   "aiohttp",
+  "typer>=0.27.0",
 ]
 requires-python = ">= 3.14"
 authors = [
@@ -17,5 +18,14 @@ description = "Toy package."
 [tool.setuptools.packages.find]
 where = ["src"]
 
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]
+
 [project.optional-dependencies]
 dev = ["pytest", "mypy"]
+
+[project.scripts]
+gridpath = "core.cli:app"
+mcarlo = "core.gridpath:app"
