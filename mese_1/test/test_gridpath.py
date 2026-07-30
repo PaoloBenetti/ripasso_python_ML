@@ -1,4 +1,4 @@
-from core.gridpath import Agent, Grid
+from core.gridpath import Agent, Grid, montecarlo, montecarlo_grid
 import inspect
 import pytest
 
@@ -82,3 +82,35 @@ def test_move_casual_esaurisce_tentativi_e_solleva(monkeypatch):
     )
     with pytest.raises(ValueError):
         a.move_casual()
+
+def test_montecarlo_typeout():
+    pos, err = montecarlo(3,5,4, 4)
+    assert isinstance(pos, dict)
+    assert isinstance(err, int)
+
+def test_numero_errori_grid_singola(monkeypatch):
+    mosse_sempre_illegali = iter([[(1, 0)], [(0, 1)], [(1, 0)], [(1, 0)], [(0, 1)], [(1, 0)]])
+    monkeypatch.setattr(
+        'core.gridpath.sample',
+        lambda popolazione, k: next(mosse_sempre_illegali)
+    )
+    g = Grid(2)
+    pos, err = montecarlo_grid(g, n_agenti=2, n_mosse=2)
+    assert err == 4  # 2 agenti x 2 mosse ciascuno, tutte illegali
+
+def test_montecarlo_conteggio_totale_agenti():
+    n, dim, n_agenti, n_mosse = 3, 4, 2, 5
+    pos, err = montecarlo(n, dim, n_agenti, n_mosse)
+    assert sum(pos.values()) == n * n_agenti  # 3 griglie x 2 agenti = 6, sempre, qualunque mossa
+
+def test_montecarlo_errori_in_range_plausibile():
+    n, dim, n_agenti, n_mosse = 3, 4, 2, 5
+    pos, err = montecarlo(n, dim, n_agenti, n_mosse)
+    assert 0 <= err <= n * n_agenti * n_mosse  # non può fallire più mosse di quelle tentate
+
+def test_montecarlo_posizioni_sempre_legali():
+    n, dim, n_agenti, n_mosse = 3, 4, 2, 5
+    pos, err = montecarlo(n, dim, n_agenti, n_mosse)
+    for (x, y) in pos.keys():
+        assert 0 <= x < dim
+        assert 0 <= y < dim
