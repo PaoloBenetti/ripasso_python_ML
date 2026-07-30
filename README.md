@@ -232,7 +232,16 @@ Scoperte:
 Giorno 5: 29/07  
 Simula un'installazione pulita in un virtualenv nuovo (python -m venv, pip install -e .), verifica che gridpath --help funzioni, che i test girino, che mypy --strict sia pulito  
 
-
+Scoperte:
 - il file pyproject serve per dare le indicazioni su cosa installare;
 - Se vuoi installare il comando utilizza pip install con opzione -e
-- 
+- ricorda uv sync
+
+__Settimana 4__
+Inizio e termine: 30/07  
+estendi gridpath con un comando che simula più griglie in parallelo (es. un piccolo esperimento Monte Carlo: N griglie indipendenti, ciascuna con agenti che si muovono casualmente per T step, e a fine simulazione raccogli statistiche aggregate — quante mosse illegali intercettate da retry, distribuzione finale delle posizioni). È un'estensione naturale di quello che hai già, e ti costringe a usare concorrenza per un motivo reale (parallelizzare simulazioni indipendenti), non come esercizio isolato.  
+
+Scoperte:  
+- Processpoolexec non è utilizzabile in modo annidata. Meglio se utilizzato in combinazione con Threadpoolexec
+- per i test monkeypunch non passa ai figli, quindi organizza i test in modo da verificare bene
+- Per i test è buona norma verificare proprietà sempre vere dei risultati. Ad esempio n max di errori, o posizioni totali.
